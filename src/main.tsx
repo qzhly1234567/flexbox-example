@@ -1,10 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Home from "./page/home";
+import 'antd/dist/reset.css';
+import { ConfigProvider } from 'antd';
+import Home from "./pages/home";
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <Home/>
+    <ConfigProvider>
+      <Home/>
+    </ConfigProvider>
   </React.StrictMode>,
 );

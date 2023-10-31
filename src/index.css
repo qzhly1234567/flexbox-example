@@ -1,11 +1,20 @@
 :root {
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    line-height: 1.5;
-    font-weight: 400;
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-text-size-adjust: 100%;
-    --color-schema: red
+
+    --color-bg: #272C39FF;
+    --color-bg-2: #3F4A71FF;
+    --color: #717B9EFF;
+    --color-font: #FDFDFDFF;
+    --color-green: #5c9938;
+    --color-red: #e93d45;
+    --color-yellow: #D6D168FF;
+
+
+}
+
+.ant-btn {
+    height: 100px;
+}
+
+.ant-layout-sider {
+    background: transparent !important;
 }
