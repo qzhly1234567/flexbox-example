@@ -15,7 +15,7 @@
     "@theatre/r3f": "0.5",
     "@theatre/studio": "0.5",
     "@types/react-syntax-highlighter": "^15.5.9",
-    "antd": "^5.4.7",
+    "antd": "^5.10.3",
     "js-table-print": "^1.1.5",
     "lodash": "^4.17.21",
     "luxy.js": "^0.1.0",
