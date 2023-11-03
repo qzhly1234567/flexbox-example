@@ -1,36 +1,35 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Affix, Button, Card, Form, Layout, Radio, Switch, Space, Modal, Slider } from 'antd';
 import './index.module.less';
-import { FormOutlined, PlusSquareOutlined } from '@ant-design/icons';
+import { FormOutlined, PlusSquareOutlined, DeleteOutlined } from '@ant-design/icons';
 
-import { getName } from '../../utils';
+import { getName, containerStyleList, itemStyleList } from '@/utils';
 
 const { Content, Footer, Sider } = Layout;
-
 const Home: React.FC = () => {
 
   const marks = {
-    0:'0',
-    1:'1',
-    2:'2',
-    3:'3',
-    4:'4',
-    5:'5',
-    6:'6',
-    7:'7',
-    8:'8',
-    9:'9',
-    10:'10',
-    11:'11',
-    12:'12',
-    13:'13',
-    14:'14',
-    15:'15',
-    16:'16',
-    17:'17',
-    18:'18',
-    19:'19',
-    20:'20',
+    0: '0',
+    1: '1',
+    2: '2',
+    3: '3',
+    4: '4',
+    5: '5',
+    6: '6',
+    7: '7',
+    8: '8',
+    9: '9',
+    10: '10',
+    11: '11',
+    12: '12',
+    13: '13',
+    14: '14',
+    15: '15',
+    16: '16',
+    17: '17',
+    18: '18',
+    19: '19',
+    20: '20',
 
   };
   const [visible, setVisible] = useState(true);
@@ -63,12 +62,12 @@ const Home: React.FC = () => {
             <Content style={{ padding: '0 10px' }}
                      onMouseEnter={(e) => {
                        e.stopPropagation();
-                       setVisible(false);
+                       // setVisible(false);
 
                      }}
                      onMouseLeave={(e) => {
                        e.stopPropagation();
-                       setVisible(true);
+                       // setVisible(true);
                      }}
             >
               <Affix offsetTop={10}>
@@ -80,8 +79,21 @@ const Home: React.FC = () => {
                           style={{ width: '200px' }}
                           type="primary"
                           key={index}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setVisible(false);
+                          }}
                           icon={<FormOutlined/>}>
                           {item.name}
+                          <Button
+                            style={{ width: '50px', height: '40px', position: 'absolute', top: '0', right: '0' }}
+                            type="primary"
+                            danger
+                            key={index}
+                            icon={<DeleteOutlined/>}>
+                          </Button>
+
+
                         </Button>
                       );
                     })
@@ -90,7 +102,10 @@ const Home: React.FC = () => {
                   <Button hidden={visible} style={{ width: '200px' }}
                           type="dashed"
                           onClick={addNode}
-                          icon={<PlusSquareOutlined/>}></Button>
+                          icon={<PlusSquareOutlined/>}>
+
+
+                  </Button>
 
                 </Card>
               </Affix>
@@ -105,42 +120,24 @@ const Home: React.FC = () => {
                     labelCol={{ span: 24 }}
                     wrapperCol={{ span: 24 }}
                   >
-                    <Form.Item
-                      label={<div><Switch size={'small'} defaultChecked/> display:</div>}
-                      name="username"
-                    >
-                      <Radio.Group disabled>
-                        <Radio value={'flex'}>flex</Radio>
-                        <Radio value={'inline-flex'}>inline-flex</Radio>
-                      </Radio.Group>
-                    </Form.Item>
-                    <Form.Item
-                      label={<div><Switch size={'small'} defaultChecked/> flex-direction:</div>}
-                      name="flex-direction:"
-                    >
-                      <Radio.Group disabled>
-                        <Radio value={'row'}>row</Radio>
-                        <Radio value={'row-reverse'}>row-reverse</Radio>
-                        <Radio value={'column'}>column</Radio>
-                        <Radio value={'column-reverse'}>column-reverse</Radio>
-                      </Radio.Group>
-                    </Form.Item>
-                    <Form.Item
-                      label={<div><Switch size={'small'} defaultChecked/> flex-wrap</div>}
-                      name="flex-wrap:"
-                    >
-                      <Radio.Group>
-                        <Radio value={'wrap'}>wrap</Radio>
-                        <Radio value={'nowrap'}>nowrap</Radio>
-                        <Radio value={'wrap-reverse'}>wrap-reverse</Radio>
-                      </Radio.Group>
-                    </Form.Item>
-                    <Form.Item
-                      label={<div><Switch size={'small'} defaultChecked/> flex-wrap</div>}
-                      name="flex-wrap:"
-                    >
-                      <Slider defaultValue={10} max={20} marks={marks} />
-                    </Form.Item>
+                    {
+                      containerStyleList.map((item, index) => {
+                        return <Form.Item
+                          label={<div><Switch size={'small'} defaultChecked/> {item.name}:</div>}
+                          name="username"
+                        >
+                          <Radio.Group disabled>
+                            {
+                              item.options.map((option, index) => {
+                                return <Radio value={option} key={index}>{option}</Radio>;
+                              })
+                            }
+                          </Radio.Group>
+                        </Form.Item>;
+                      })
+
+                    }
+
                   </Form>
                 </Card>
                 <Card title={'sdasd'} hidden={visible}>
@@ -149,37 +146,22 @@ const Home: React.FC = () => {
                     labelCol={{ span: 24 }}
                     wrapperCol={{ span: 24 }}
                   >
-                    <Form.Item
-                      label={<div><Switch size={'small'} defaultChecked/> display:</div>}
-                      name="username"
-                    >
-                      <Radio.Group>
-                        <Radio value={'flex'}>flex</Radio>
-                        <Radio value={'inline-flex'}>inline-flex</Radio>
-                      </Radio.Group>
-                    </Form.Item>
-                    <Form.Item
-                      label={<div><Switch size={'small'} defaultChecked/> flex-direction:</div>}
-                      name="flex-direction:"
-                    >
-                      <Radio.Group>
-                        <Radio value={'row'}>row</Radio>
-                        <Radio value={'row-reverse'}>row-reverse</Radio>
-                        <Radio value={'column'}>column</Radio>
-                        <Radio value={'column-reverse'}>column-reverse</Radio>
-                      </Radio.Group>
-                    </Form.Item>
-                    <Form.Item
-                      label={<div><Switch size={'small'} defaultChecked/> flex-wrap</div>}
-                      name="flex-wrap:"
-                    >
-                      <Radio.Group>
-                        <Radio value={'wrap'}>wrap</Radio>
-                        <Radio value={'nowrap'}>nowrap</Radio>
-                        <Radio value={'wrap-reverse'}>wrap-reverse</Radio>
-                      </Radio.Group>
-                    </Form.Item>
-
+                    {
+                      itemStyleList.map((item, index) => {
+                        return <Form.Item
+                          label={<div><Switch size={'small'} defaultChecked/> {item.name}:</div>}
+                          name="username"
+                        >
+                          <Radio.Group disabled>
+                            {
+                              item.options.map((option, index) => {
+                                return <Radio value={option} key={index}>{option}</Radio>;
+                              })
+                            }
+                          </Radio.Group>
+                        </Form.Item>;
+                      })
+                    }
                   </Form>
                 </Card>
               </Space>
